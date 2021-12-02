@@ -9,7 +9,7 @@
 <body>
   <a-scene id="scene" id="scene2"  >
     <a-assets>
-    　<video id="video" src="video/VRAir23.mp4" preload="auto"></video>
+    　<video id="video" src="VRAir23.mp4" preload="auto"></video>
     </a-assets>
 
     <!-- TODO:text -->
@@ -66,8 +66,7 @@ btnStop.addEventListener("click", (e) => {        // クリックされたら
 });
 const btnRepeat = document.getElementById("link");// ボタンの取得
 btnRepeat.addEventListener("click", (e) => {      // クリックされたら
-  video.src = "video/AirPort.mp4";                // 動画を停止
-  video = autoplay;
+  video.src = "AirPort.mp4";                // 動画を停止
   setSphere();
 });
 </script>
@@ -116,7 +115,7 @@ btnRepeat.addEventListener("click", (e) => {      // クリックされたら
   function toLink1(){
     //window.location.href = "https://19j5126.github.io/rei3/"
     var tag = document.getElementById("video");
-    tag.src = "video/360VR.mp4";
+    tag.src = "360VR.mp4";
     tag.load();
     tag.play();
     delSphere();
@@ -145,7 +144,7 @@ btnRepeat.addEventListener("click", (e) => {      // クリックされたら
   function toLink2(){
     //window.location.href = "https://19j5126.github.io/rei5/"
     var tag = document.getElementById("video");
-    tag.src = "video/wine.mp4";
+    tag.src = "wine.mp4";
     tag.load();
     tag.play();
     delSphere();
@@ -174,7 +173,7 @@ btnRepeat.addEventListener("click", (e) => {      // クリックされたら
   function toLink3(){
     //window.location.href = "https://19j5126.github.io/rei4/"
     var tag = document.getElementById("video");
-    tag.src = "video/city.mp4";
+    tag.src = "city.mp4";
     tag.load();
     tag.play();
     delSphere();

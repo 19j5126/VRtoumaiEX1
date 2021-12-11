@@ -1,202 +1,176 @@
 <!DOCTYPE html>
 <html>
+
 <head>
   <meta charset="utf-8">
   <title>360度動画</title>
   <script src="aframe.min.js"></script>
   <script src="play-on-touch.js"></script>
 </head>
+
 <body>
-  <a-scene id="scene" id="scene2"  >
+  <a-scene id="scene">
     <a-assets>
-    　<video id="video" src="VRAir23.mp4" preload="auto"></video>
+      <!--初期画像-->
+      <img id="img" src="image/kyoukai.jpg" preload="auto">
+      <!--<audio id="audio" src="audio/" autoplay="true" preload="auto"></audio>-->
     </a-assets>
 
-    <!-- TODO:text -->
-   <a-text value=""
-   position="0 2 -2"
-   align="center"
-   width="10.5"
-   color="#f00e0e">
-   </a-text>
+    <!-- 画像の変更を行う場合はこっちのidで -->
+    <a-sky id="skyimg" src="#img" play-on-touch="#scene"></a-sky>
 
-    <a-videosphere src="#video" rotation="0 -90 0" play-on-touch="#scene"></a-videosphere>
-    <!-- 動画の autoplay が効かない場合用の、再生・停止ボタン -->
-    <a-box id="play" position="-1 0 -1" scale="0.5 0.5 0.01" src="start2.jpeg"></a-box>
-    <a-box id="stop" position="0 0 -1" scale="0.5 0.5 0.01" src="stop2.jpg"></a-box>
-    <a-box id="link" position="1 0 -1" scale="0.5 0.5 0.01" src="repeat.jpeg"></a-box>
-
-    <!-- リンク用のbox -->
+    <!-- 動画の autoplay が効かない場合用の、再生・停止ボタン (画像になったからいるかわからない) -->
+    <a-box id="play" position="-1 0.5 -1" scale="0.5 0.5 0.01" src="btnImg/start2.jpeg"></a-box>
+    <a-box id="stop" position="0 0.5 -1" scale="0.5 0.5 0.01" src="btnImg/stop2.jpg"></a-box>
+    <a-box id="link" position="1 0.5 -1" scale="0.5 0.5 0.01" src="btnImg/repeat.jpeg"></a-box>
     
-    <!--
-    <a-sphere id="link1" position="0 3 -4" scale="1 1 1" src="360VRGG.png" linkbox1></a-sphere>
-    <a-sphere id="link2" position="7 3 3" scale="1 1 1" src="wine.png" linkbox2></a-sphere>
-    <a-sphere id="link3" position="-7 3 3" scale="1 1 1" src="city.png" linkbox3></a-sphere>
-    -->
-
+    <!-- リンク用のbox -->
+    <a-sphere id="link1" position="0 3 -4" scale="1 1 1" src="image/kusatsu1.jpg" linkbox1></a-sphere>
+    <a-sphere id="link2" position="7 3 3" scale="1 1 1" src="image/Kvevri.jpg" linkbox2></a-sphere>
+    <a-sphere id="link3" position="-7 3 3" scale="1 1 1" src="image/budoubatake.jpg" linkbox3></a-sphere>
+    
     <!-- 再生・停止ボタンを押すための視線カーソル（スマホ用） -->
-    <a-camera>  
-      <a-cursor fuse="true" fuse-timeout="1000"></a-cursor>   
+    <a-camera>
+      <a-cursor fuse="true" fuse-timeout="1000"></a-cursor>
     </a-camera>
-  
   </a-scene>
 
-<script>
-  var timer1, timer2;
-  var objTag = ['link1', 'link2', 'link3'];
-  var objDel;
-  let playFlag = 0;
-  let sphereFlag = 0;
-</script>
+    <script>
+      var timer1, timer2;
+      var objTag = ['link1', 'link2', 'link3'];
+      let sphereFlag = 0;
+      var image = document.getElementById("skyimg");   // 画像の取得
+      //var audio = document.getElementById("audio");    // 音声の取得
+    </script>
 
-  <!-- 動画の再生・停止のための JavaScript -->
-<script>
-const video = document.getElementById("video");   // 動画の取得
-const btnPlay = document.getElementById("play");  // 再生ボタンの取得
-btnPlay.addEventListener("click", (e) => {        // クリックされたら
-  video.play();                                   // 動画を再生
-  if(playFlag == 0){
-    setTimeout(setSphere, 28000);
-  }
-  playFlag = 1;
-});
-const btnStop = document.getElementById("stop");  // 停止ボタンの取得
-btnStop.addEventListener("click", (e) => {        // クリックされたら
-  video.pause();                                  // 動画を停止
-});
-const btnRepeat = document.getElementById("link");// ボタンの取得
-btnRepeat.addEventListener("click", (e) => {      // クリックされたら
-  video.src = "AirPort.mp4";                // 動画を停止
-  setSphere();
-});
-</script>
-
-<script>
-  function setSphere()　{
-    const sceneElement = document.getElementById('scene');
-    const sphereElement = document.createElement('a-sphere');
-    sphereElement.setAttribute('id', 'link1');
-    sphereElement.setAttribute('position', '0 3 -4');
-    sphereElement.setAttribute('scale', '1 1 1');
-    sphereElement.setAttribute('src', '360VRGG.png');
-    sphereElement.setAttribute('linkBox1', '');
-
-    sceneElement.appendChild(sphereElement);
-    const sphereElement2 = document.createElement('a-sphere');
-    sphereElement2.setAttribute('id', 'link2');
-    sphereElement2.setAttribute('position', '7 3 3');
-    sphereElement2.setAttribute('scale', '1 1 1');
-    sphereElement2.setAttribute('src', 'wine.png');
-    sphereElement2.setAttribute('linkBox2', '');
-    sceneElement.appendChild(sphereElement2);
-
-    sceneElement.appendChild(sphereElement);
-    const sphereElement3 = document.createElement('a-sphere');
-    sphereElement3.setAttribute('id', 'link3');
-    sphereElement3.setAttribute('position', '-7 3 3');
-    sphereElement3.setAttribute('scale', '1 1 1');
-    sphereElement3.setAttribute('src', 'city.png');
-    sphereElement3.setAttribute('linkBox3', '');
-    sceneElement.appendChild(sphereElement3);
-
-    sphereFlag = 1;
-  };
-  function delSphere(){
-    for(let i = 0; i < objTag.length; i++){
-      objDel = document.getElementById(objTag[i]);
-      objDel.remove();
-    }
-    sphereFlag = 0;
-  };
-
-</script>
-
-<script>
-  function toLink1(){
-    //window.location.href = "https://19j5126.github.io/rei3/"
-    var tag = document.getElementById("video");
-    tag.src = "Kvevri.mov";
-    tag.load();
-    tag.play();
-    delSphere();
-  }
-
-  AFRAME.registerComponent('linkbox1', {
-    init: function () {  //aframeのコンポーネントの考え方
-      console.log(this);　//aframeのコンポーネントの考え方
-      const element = this.el;　　//aframeのコンポーネントの考え方
-      element.addEventListener('mouseenter', function () {　//マウスの代わりに視線でクリック
-        element.play();
-        console.log('mouseenter');
-        element.setAttribute('animation', 'property: rotation; to: 0 360 0; dur: 2000; easing: linear; loop: true');
-          timer1 = setTimeout(toLink1, 2000); //toLink関数を実行
+    <script>//ボタン
+      const btnPlay = document.getElementById("play");  // 再生ボタンの取得
+      btnPlay.addEventListener("click", (e) => {        // クリックされたら
+        
       });
-      element.addEventListener('mouseleave', function () {　//マウスの代わりに視線でクリック
-        element.pause();
-        clearTimeout(timer1);
+      const btnStop = document.getElementById("stop");  // 停止ボタンの取得
+      btnStop.addEventListener("click", (e) => {        // クリックされたら
+
       });
-    }
-  });
-
-</script>
-
-<script>
-  function toLink2(){
-    //window.location.href = "https://19j5126.github.io/rei5/"
-    var tag = document.getElementById("video");
-    tag.src = "sougen1.mov";
-    tag.load();
-    tag.play();
-    delSphere();
-  }
-
-  AFRAME.registerComponent('linkbox2', {
-    init: function () {  //aframeのコンポーネントの考え方
-      console.log(this);　//aframeのコンポーネントの考え方
-      const element = this.el;　　//aframeのコンポーネントの考え方
-      element.addEventListener('mouseenter', function () {　//マウスの代わりに視線でクリック
-        element.play();
-        console.log('mouseenter');
-        element.setAttribute('animation', 'property: rotation; to: 0 360 0; dur: 2000; easing: linear; loop: true');
-          timer1 = setTimeout(toLink2, 2000); //toLink関数を実行
+      const btnRepeat = document.getElementById("link");// ボタンの取得
+      btnRepeat.addEventListener("click", (e) => {      // クリックされたら
+        image.setAttribute("src", "image/kyoukai.jpg"); 
+        //sound.setAttribute("src", "audio/");
+        if (sphereFlag == 0) {
+          setSphere();
+        }
       });
-      element.addEventListener('mouseleave', function () {　//マウスの代わりに視線でクリック
-        element.pause();
-        clearTimeout(timer1);
+    </script>
+
+    <script>//球体
+      function setSphere() {
+        const sceneElement = document.getElementById('scene');
+        const sphereElement = document.createElement('a-sphere');
+        sphereElement.setAttribute('id', 'link1');
+        sphereElement.setAttribute('position', '0 3 -4');
+        sphereElement.setAttribute('scale', '1 1 1');
+        sphereElement.setAttribute('src', 'image/kusatsu1.jpg');
+        sphereElement.setAttribute('linkBox1', '');
+
+        sceneElement.appendChild(sphereElement);
+        const sphereElement2 = document.createElement('a-sphere');
+        sphereElement2.setAttribute('id', 'link2');
+        sphereElement2.setAttribute('position', '7 3 3');
+        sphereElement2.setAttribute('scale', '1 1 1');
+        sphereElement2.setAttribute('src', 'image/Kvevri.jpg');
+        sphereElement2.setAttribute('linkBox2', '');
+        sceneElement.appendChild(sphereElement2);
+
+        sceneElement.appendChild(sphereElement);
+        const sphereElement3 = document.createElement('a-sphere');
+        sphereElement3.setAttribute('id', 'link3');
+        sphereElement3.setAttribute('position', '-7 3 3');
+        sphereElement3.setAttribute('scale', '1 1 1');
+        sphereElement3.setAttribute('src', 'image/budoubatake.jpg');
+        sphereElement3.setAttribute('linkBox3', '');
+        sceneElement.appendChild(sphereElement3);
+
+        sphereFlag = 1;
+      };
+      function delSphere() {
+        for (let i = 0; i < objTag.length; i++) {
+          var objDel = document.getElementById(objTag[i]);
+          objDel.remove();
+        }
+        sphereFlag = 0;
+      };
+    </script>
+
+    <script>
+      function toLink1() {
+        image.setAttribute("src", "image/kusatsu1.jpg");  // 画像の切り替え
+        //audio.setAttribute("src", "audio/");    // 音声の切り替え
+        delSphere();
+      }
+
+      AFRAME.registerComponent('linkbox1', {
+        init: function () {  //aframeのコンポーネントの考え方
+          console.log(this);　//aframeのコンポーネントの考え方
+          const element = this.el;　　//aframeのコンポーネントの考え方
+          element.addEventListener('mouseenter', function () {　//マウスの代わりに視線でクリック
+            element.play();
+            console.log('mouseenter');
+            element.setAttribute('animation', 'property: rotation; to: 0 360 0; dur: 2000; easing: linear; loop: true');
+            timer1 = setTimeout(toLink1, 2000); //toLink関数を実行
+          });
+          element.addEventListener('mouseleave', function () {　//回転の停止
+            element.pause();
+            clearTimeout(timer1);
+          });
+        }
       });
-    }
-  });
 
-</script>
+      function toLink2() {
+        image.setAttribute("src", "image/Kvevri.jpg");  // 画像の切り替え
+        //sound.setAttribute("src", "audio/");  // 音声の切り替え
+        delSphere();
+      }
 
-<script>
-  function toLink3(){
-    //window.location.href = "https://19j5126.github.io/rei4/"
-    var tag = document.getElementById("video");
-    tag.src = "kyoukai2.mov";
-    tag.load();
-    tag.play();
-    delSphere();
-  }
-
-  AFRAME.registerComponent('linkbox3', {
-    init: function () {  //aframeのコンポーネントの考え方
-      console.log(this);　//aframeのコンポーネントの考え方
-      const element = this.el;　　//aframeのコンポーネントの考え方
-      element.addEventListener('mouseenter', function () {　//マウスの代わりに視線でクリック
-        element.play();
-        console.log('mouseenter');
-        element.setAttribute('animation', 'property: rotation; to: 0 360 0; dur: 2000; easing: linear; loop: false; delay: 0');
-          timer1 = setTimeout(toLink3, 2000); //toLink関数を実行
+      AFRAME.registerComponent('linkbox2', {
+        init: function () {  //aframeのコンポーネントの考え方
+          console.log(this);　//aframeのコンポーネントの考え方
+          const element = this.el;　　//aframeのコンポーネントの考え方
+          element.addEventListener('mouseenter', function () {　//マウスの代わりに視線でクリック
+            element.play();
+            console.log('mouseenter');
+            element.setAttribute('animation', 'property: rotation; to: 0 360 0; dur: 2000; easing: linear; loop: true');
+            timer1 = setTimeout(toLink2, 2000); //toLink関数を実行
+          });
+          element.addEventListener('mouseleave', function () {　//回転の停止
+            element.pause();
+            clearTimeout(timer1);
+          });
+        }
       });
-      element.addEventListener('mouseleave', function () {　//マウスの代わりに視線でクリック
-        element.pause();
-        clearTimeout(timer1);
-      });
-    }
-  });
-  
-</script>
 
+      function toLink3() {
+        image.setAttribute("src", "image/budoubatake.jpg");   // 画像の切り替え
+        //sound.setAttribute("src", "audio/");    // 音声の切り替え
+        delSphere();
+      }
+
+      AFRAME.registerComponent('linkbox3', {
+        init: function () {  //aframeのコンポーネントの考え方
+          console.log(this);　//aframeのコンポーネントの考え方
+          const element = this.el;　　//aframeのコンポーネントの考え方
+          element.addEventListener('mouseenter', function () {　//マウスの代わりに視線でクリック
+            element.play();
+            console.log('mouseenter');
+            element.setAttribute('animation', 'property: rotation; to: 0 360 0; dur: 2000; easing: linear; loop: true');
+            timer1 = setTimeout(toLink3, 2000); //toLink関数を実行
+          });
+          element.addEventListener('mouseleave', function () {　//回転の停止
+            element.pause();
+            clearTimeout(timer1);
+          });
+        }
+      });
+    </script>
 </body>
+
 </html>

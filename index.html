@@ -6,7 +6,6 @@
   <title>360度動画</title>
   <script src="aframe.min.js"></script>
   <script src="play-on-touch.js"></script>
-  <iframe src="https://raw.githubusercontent.com/anars/blank-audio/master/500-milliseconds-of-silence.mp3" allow="autoplay" id="audio" style="display:none"></iframe>
 </head>
 
 <body>
@@ -42,6 +41,12 @@
       let sphereFlag = 0;
       var image = document.getElementById("skyimg");   // 画像の取得
       var audio = document.getElementById("audio");    // 音声の取得
+      
+      document.addEventListener('click', audioPlay);
+      function audioPlay() {
+        document.getElementById('audio').play();
+        document.removeEventListener('click', audioPlay);
+      }
     </script>
 
     <script>//ボタン

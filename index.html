@@ -52,8 +52,8 @@
       btnStop.addEventListener("click", (e) => {        // クリックされたら
 
       });
-      const btnRepeat = document.getElementById("link");// ボタンの取得
-      btnRepeat.addEventListener("click", (e) => {      // クリックされたら
+      const btnRepeat = document.getElementById("link"); // ボタンの取得
+      btnRepeat.addEventListener("click", (e) => {       // クリックされたら
         image.setAttribute("src", "image/kyoukai.jpg"); 
         //sound.setAttribute("src", "audio/");
         if (sphereFlag == 0) {
@@ -103,22 +103,22 @@
 
     <script>
       function toLink1() {
-        image.setAttribute("src", "image/kusatsu2.jpg");  // 画像の切り替え
-        //audio.setAttribute("src", "audio/");    // 音声の切り替え
+        image.setAttribute("src", "image/kusatsu2.jpg"); //画像の切り替え
+        //audio.setAttribute("src", "audio/"); //音声の切り替え
         delSphere();
       }
 
       AFRAME.registerComponent('linkbox1', {
-        init: function () {  //aframeのコンポーネントの考え方
-          console.log(this);　//aframeのコンポーネントの考え方
-          const element = this.el;　　//aframeのコンポーネントの考え方
-          element.addEventListener('mouseenter', function () {　//マウスの代わりに視線でクリック
+        init: function () { //aframeのコンポーネントの考え方
+          console.log(this); //aframeのコンポーネントの考え方
+          const element = this.el; //aframeのコンポーネントの考え方
+          element.addEventListener('mouseenter', function () { //マウスの代わりに視線でクリック
             element.play();
             console.log('mouseenter');
             element.setAttribute('animation', 'property: rotation; to: 0 360 0; dur: 2000; easing: linear; loop: true');
             timer1 = setTimeout(toLink1, 2000); //toLink関数を実行
           });
-          element.addEventListener('mouseleave', function () {　//回転の停止
+          element.addEventListener('mouseleave', function () { //回転の停止
             element.pause();
             clearTimeout(timer1);
           });
@@ -126,22 +126,22 @@
       });
 
       function toLink2() {
-        image.setAttribute("src", "image/Kvevri.jpg");  // 画像の切り替え
-        //sound.setAttribute("src", "audio/");  // 音声の切り替え
+        image.setAttribute("src", "image/Kvevri.jpg"); //画像の切り替え
+        //sound.setAttribute("src", "audio/"); //音声の切り替え
         delSphere();
       }
 
       AFRAME.registerComponent('linkbox2', {
-        init: function () {  //aframeのコンポーネントの考え方
-          console.log(this);　//aframeのコンポーネントの考え方
-          const element = this.el;　　//aframeのコンポーネントの考え方
-          element.addEventListener('mouseenter', function () {　//マウスの代わりに視線でクリック
+        init: function () { //aframeのコンポーネントの考え方
+          console.log(this); //aframeのコンポーネントの考え方
+          const element = this.el; //aframeのコンポーネントの考え方
+          element.addEventListener('mouseenter', function () { //マウスの代わりに視線でクリック
             element.play();
             console.log('mouseenter');
             element.setAttribute('animation', 'property: rotation; to: 0 360 0; dur: 2000; easing: linear; loop: true');
             timer1 = setTimeout(toLink2, 2000); //toLink関数を実行
           });
-          element.addEventListener('mouseleave', function () {　//回転の停止
+          element.addEventListener('mouseleave', function () { //回転の停止
             element.pause();
             clearTimeout(timer1);
           });
@@ -149,22 +149,22 @@
       });
 
       function toLink3() {
-        image.setAttribute("src", "image/budoubatake.jpg");   // 画像の切り替え
-        //sound.setAttribute("src", "audio/");    // 音声の切り替え
+        image.setAttribute("src", "image/budoubatake.jpg"); //画像の切り替え
+        //sound.setAttribute("src", "audio/"); //音声の切り替え
         delSphere();
       }
 
       AFRAME.registerComponent('linkbox3', {
-        init: function () {  //aframeのコンポーネントの考え方
-          console.log(this);　//aframeのコンポーネントの考え方
-          const element = this.el;　　//aframeのコンポーネントの考え方
-          element.addEventListener('mouseenter', function () {　//マウスの代わりに視線でクリック
+        init: function () { //aframeのコンポーネントの考え方
+          console.log(this); //aframeのコンポーネントの考え方
+          const element = this.el; //aframeのコンポーネントの考え方
+          element.addEventListener('mouseenter', function () { //マウスの代わりに視線でクリック
             element.play();
             console.log('mouseenter');
             element.setAttribute('animation', 'property: rotation; to: 0 360 0; dur: 2000; easing: linear; loop: true');
             timer1 = setTimeout(toLink3, 2000); //toLink関数を実行
           });
-          element.addEventListener('mouseleave', function () {　//回転の停止
+          element.addEventListener('mouseleave', function () { //回転の停止
             element.pause();
             clearTimeout(timer1);
           });

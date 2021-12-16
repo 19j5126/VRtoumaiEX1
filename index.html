@@ -13,7 +13,7 @@
     <a-assets>
       <!--初期画像-->
       <img id="img" src="image/kyoukai.jpg" preload="auto">
-      <!--<audio id="audio" src="audio/" autoplay="true" preload="auto"></audio>-->
+      <audio id="audio" src="audio/kyoukai_1.m4a" autoplay="true" preload="auto"></audio>
     </a-assets>
 
     <!-- 画像の変更を行う場合はこっちのidで -->
@@ -40,7 +40,7 @@
       var objTag = ['link1', 'link2', 'link3'];
       let sphereFlag = 0;
       var image = document.getElementById("skyimg");   // 画像の取得
-      //var audio = document.getElementById("audio");    // 音声の取得
+      var audio = document.getElementById("audio");    // 音声の取得
     </script>
 
     <script>//ボタン
@@ -104,7 +104,7 @@
     <script>
       function toLink1() {
         image.setAttribute("src", "image/kusatsu2.jpg"); //画像の切り替え
-        //audio.setAttribute("src", "audio/"); //音声の切り替え
+        audio.setAttribute("src", "audio/"); //音声の切り替え
         delSphere();
       }
 
@@ -127,7 +127,7 @@
 
       function toLink2() {
         image.setAttribute("src", "image/Kvevri.jpg"); //画像の切り替え
-        //sound.setAttribute("src", "audio/"); //音声の切り替え
+        audio.setAttribute("src", "audio/kvevri.m4a"); //音声の切り替え
         delSphere();
       }
 
@@ -150,7 +150,7 @@
 
       function toLink3() {
         image.setAttribute("src", "image/budoubatake.jpg"); //画像の切り替え
-        //sound.setAttribute("src", "audio/"); //音声の切り替え
+        audio.setAttribute("src", "audio/budoubatake.m4a"); //音声の切り替え
         delSphere();
       }
 

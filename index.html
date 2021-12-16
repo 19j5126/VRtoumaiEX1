@@ -55,6 +55,7 @@
       const btnRepeat = document.getElementById("link"); // ボタンの取得
       btnRepeat.addEventListener("click", (e) => {       // クリックされたら
         image.setAttribute("src", "image/kyoukai.jpg"); 
+        audio.stop();
         //sound.setAttribute("src", "audio/");
         if (sphereFlag == 0) {
           setSphere();

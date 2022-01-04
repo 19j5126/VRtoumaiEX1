@@ -32,6 +32,7 @@
     <!-- 再生・停止ボタンを押すための視線カーソル（スマホ用） -->
     <a-camera>
       <a-cursor fuse="true" fuse-timeout="1000"></a-cursor>
+      <a-entity id="touch1" cursor="rayOrigin: mouse"></a-entity>
     </a-camera>
   </a-scene>
 
@@ -39,24 +40,33 @@
       var timer1, timer2;
       var objTag = ['link1', 'link2', 'link3'];
       let sphereFlag = 0;
+      let touchFlag = 0;
+      var touchCheck = document.getElementById("touch1");
       var image = document.getElementById("skyimg");   // 画像の取得
-      var audio = document.getElementById("audio");    // 音声の取得
+      var audio;
     </script>
 
     <script>//ボタン
       audio.play();
       const btnPlay = document.getElementById("play");  // 再生ボタンの取得
       btnPlay.addEventListener("click", (e) => {        // クリックされたら
+        if(touchFlag == 0){
+          audio = new Audio();
+          audio.src = 'audio/kyoukai_1.m4a';
+          audio.load();
+          touchFlag = 1;
+          touchCheck.remove();
+        }
         audio.play();
       });
       const btnStop = document.getElementById("stop");  // 停止ボタンの取得
       btnStop.addEventListener("click", (e) => {        // クリックされたら
-
+        audio.pause();
       });
       const btnRepeat = document.getElementById("link"); // ボタンの取得
       btnRepeat.addEventListener("click", (e) => {       // クリックされたら
         image.setAttribute("src", "image/kyoukai.jpg"); 
-        audio.stop();
+        audio.pause();
         //sound.setAttribute("src", "audio/");
         if (sphereFlag == 0) {
           setSphere();
@@ -107,6 +117,7 @@
       function toLink1() {
         image.setAttribute("src", "image/kusatsu2.jpg"); //画像の切り替え
         audio.setAttribute("src", "audio/kusatsu2.mp3"); //音声の切り替え
+        audio.play();
         delSphere();
       }
 
@@ -130,6 +141,7 @@
       function toLink2() {
         image.setAttribute("src", "image/Kvevri.jpg"); //画像の切り替え
         audio.setAttribute("src", "audio/kvevri.m4a"); //音声の切り替え
+        audio.play();
         delSphere();
       }
 
@@ -153,6 +165,7 @@
       function toLink3() {
         image.setAttribute("src", "image/budoubatake.jpg"); //画像の切り替え
         audio.setAttribute("src", "audio/budoubatake.m4a"); //音声の切り替え
+        audio.play();
         delSphere();
       }
 
